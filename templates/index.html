@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}PopeCast 2025 - Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="display-4 mb-4">📊 PopeCast 2025: Papal Conclave Prediction</h1>
+        <p class="lead">
+            An algorithmic system for predicting the outcome of papal conclaves using historical patterns,
+            cardinal data, and conclave simulation.
+        </p>
+    </div>
+</div>
+<h3 class="mt-5 mb-3">🕊️ How We Predict the Pope</h3>
+
+<div class="accordion" id="explainerAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+        🤔 What’s the Difference Between “Most Likely to Win” vs “Who Actually Wins”?
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#explainerAccordion">
+      <div class="accordion-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card border-primary mb-3">
+              <div class="card-header bg-primary text-white">🏆 Most Likely to Win</div>
+              <div class="card-body">
+                <ul>
+                  <li>Based on profile data (PPI, age, role, region)</li>
+                  <li>Ranks strongest candidates on paper</li>
+                  <li>Stable and deterministic</li>
+                </ul>
+                <p class="text-muted"><em>"If we ran elections on stats alone..."</em></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-success mb-3">
+              <div class="card-header bg-success text-white">🗳️ Who Actually Wins</div>
+              <div class="card-body">
+                <ul>
+                  <li>Simulates conclave rounds, coalitions, shifting votes</li>
+                  <li>Includes randomness and surprise outcomes</li>
+                  <li>Different results each run</li>
+                </ul>
+                <p class="text-muted"><em>"What might really happen behind closed doors."</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-3"><strong>It’s the difference between prediction... and possibility.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Total Cardinals</div>
+            <div class="card-body">
+                <h5 class="card-title display-4">{{ stats.total_cardinals }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Eligible Electors</div>
+            <div class="card-body">
+                <h5 class="card-title display-4">{{ stats.eligible_electors }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Required Majority</div>
+            <div class="card-body">
+                <h5 class="card-title display-4">{{ stats.required_votes }}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Top Papal Candidates</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped"                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Country</th>
+                                <th>PPI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for _, cardinal in top_cardinals.iterrows() %}
+                            <tr>
+                                <td>{{ cardinal["name"]  }}</td>
+                                <td>{{ cardinal["age"]|int }}</td>
+                                <td>{{ cardinal["country"]  }}</td>
+                                <td>{{ "%.3f"|format(cardinal["ppi_display"]) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/leaderboard" class="btn btn-sm btn-outline-primary mt-2">View Full Leaderboard</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">About PopeCast</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    PopeCast 2025 is a computational model that predicts papal elections by simulating 
+                    the conclave process. The system combines historical patterns, cardinal data 
+                    analysis, and realistic voting dynamics to forecast the most likely outcomes.
+                </p>
+                <a href="/simulation" class="btn btn-primary mt-3">Run Conclave Simulation</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}PopeCast 2025 - Conclave Simulation{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Conclave Simulation</h1>
+<p class="lead">Run a simulated papal conclave to predict the next pope.</p>
+
+<div class="alert alert-info">
+    <strong>Note:</strong> This is a placeholder for the simulation feature. In the full implementation, 
+    this page would connect to your Python simulation logic.
+</div>
+
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">Top Predicted Popes</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Cardinal</th>
+                        <th>Country</th>
+                        <th>Probability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Pietro Parolin</td>
+                        <td>Italy</td>
+                        <td>32.5%</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Luis Antonio Tagle</td>
+                        <td>Philippines</td>
+                        <td>17.8%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Matteo Zuppi</td>
+                        <td>Italy</td>
+                        <td>14.2%</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Peter Turkson</td>
+                        <td>Ghana</td>
+                        <td>11.5%</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Marcello Semeraro</td>
+                        <td>Italy</td>
+                        <td>8.7%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

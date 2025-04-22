@@ -1,2 +1,2 @@
 # popecast-2025
-predicting the next pope 2025
+side project: predicting the papal conclave
